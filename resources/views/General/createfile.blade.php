@@ -9,10 +9,11 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="card mt-5">
-					<div class="card-header">Add Student</div>
-
+					<div class="card-header">Upload File</div>
+                    <h3>{{ __('message.welcome') }}</h3>
+                    <h3>{{ __('message.language') }}</h3>
 					<div class="card-body">
-						<form action="{{route('student.store')}}" method="Post">
+						<form action="{{route('uploadFile.store')}}" method="Post" enctype="multipart/form-data" >
 							@csrf
 								@if(Session::get('success'))
 								<div class="alert alert-success">
@@ -25,19 +26,11 @@
 								</div>
 								@endif
 							<div class="form-group">
-								<label>Name</label>
-								<input type="text" name="name" class="form-control">
-							</div>
-							<div class="form-group">
-								<label>Email</label>
-								<input type="email" name="email" class="form-control">
-							</div>
-							<div class="form-group">
-								<label>Phone</label>
-								<input type="text" name="phone" class="form-control">
+								<label>File</label>
+								<input type="file" name="file" class="form-control">
 							</div>
 							<button class="btn btn-success" type="submit">Submit</button>
-							<a href="{{url('student')}}" class="btn btn-danger">Back</a>
+
 						</form>
 					</div>
 				</div>
