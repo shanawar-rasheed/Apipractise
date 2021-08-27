@@ -153,4 +153,9 @@ class GeneralPractiseController extends Controller
        $image->move(public_path('images'),$imagename);
        return response()->json(['success'=>$imagename]);
    }
+
+   public function tinyEditor()
+   {
+       return view('General.tinyeditor');
+   }
 }

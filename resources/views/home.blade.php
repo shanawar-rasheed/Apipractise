@@ -15,9 +15,12 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                   
                 </div>
             </div>
+            <a href="{{ url('student') }}" class="btn btn-info">Student</a>
         </div>
+        
     </div>
 </div>
 @endsection

@@ -6,7 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Student;
 use App\Providers\Paginator;
+use App\Exports\StudentsExport;
+use App\Imports\StudentsImport;
+use Excel;
 use Validate;
+use PDF;
+
 
 class StudentController extends Controller
 {
@@ -178,8 +183,10 @@ class StudentController extends Controller
 
         $data=DB::table('students')->paginate(5);
 
+		
     	return view('student.index',compact('data'));
     }
+
 
     public function Create()
     {
@@ -236,5 +243,42 @@ class StudentController extends Controller
 
 
 
+
+					//Package are imported for excel,csv and pdf check config/app
+					
+	public function exportIntoExcel()    //function for exporting data in excel
+	{
+		return Excel::download(new StudentsExport,'Studentslist.xlsx');
+	}
+
+	public function exportIntoCsv()		//function for exporting data in csv	
+	{
+		return Excel::download(new StudentsExport,'Studentslist.csv');
+	}
+
+	public function exportIntoPdf()		//function for download pdf
+	{
+		$data=Student::all();
+		$pdf=PDF::loadView('student.index',compact('data'));
+		return $pdf->download('Studentslist.pdf');
+	}
+
+	public function importForm()
+	{
+		return view('student.import-form');
+	}
+	public function import(Request $request)
+	{
+		Excel::import(new StudentsImport,$request->file);
+		return back()->with('success','Data Successfully Imported');
+	}
+
+	public function autocompleteSearch(Request $request)
+	{
+		$data=Student::select("name")
+						->where("name","LIKE","%{$request->searches}%")
+						->get();
+		return response()->json($data);
+	}
 
 }
