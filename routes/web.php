@@ -111,6 +111,9 @@ Route::get("student/autocompleteSearch",[StudentController::class,'autocompleteS
 Route::get("teacher",[AjaxTeacherController::class,'index'])->name('teacher.index');
 Route::get("teacher/create",[AjaxTeacherController::class,'create'])->name('teacher.create');
 Route::post("teacher/insert",[AjaxTeacherController::class,'insert'])->name('teacher.insert');
+Route::get("teacher/{id}",[AjaxTeacherController::class,'getTeacherById']);
+Route::put("teacher/update",[AjaxTeacherController::class,'updateTeacher'])->name('teacher.update');
+Route::delete("teacher/{id}",[AjaxTeacherController::class,'deleteTeacher'])->name('teacher.delete');
 
 });
 
