@@ -13,6 +13,7 @@ use App\Http\Controllers\AjaxTeacherController;
 
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,6 +46,8 @@ Route::group(['middleware'=>['authmiddleware']],function(){
 Route::get("jquery",[jqueryPractiseController::class,'jqueryfunctionindex'])->name('jqueryfunctionindex');
 
 Route::get("Jspractise",[JsController::class,'Jspractise'])->name('Jspractise');
+Route::get("jsonpractise",[JsController::class,'jsonCreate'])->name('jsonpractise.create');
+Route::post("jsonpractise",[JsController::class,'jsonInsert'])->name('jsonpractise.store');
 
 
 Route::get("insertRecord",[RelationshipController::class,'insertRecord'])->name('insertRecord');

@@ -36,6 +36,17 @@ class AjaxTeacherController extends Controller
         //     'message' => 'Teasher status updated successfully.'
         // ]);
 
+        
+        // $collect = []; // empty array for collect customised inputs
+        // foreach($request->all() as $input_key => $input_value){ // split input one by one
+        //  $collect[] = array( //customised inputs
+        //     "id" => $input_key,
+        //     "value" => $input_value
+        //  );
+        // } 
+        // $result = json_encode($collect); //convert to json
+        // return response($result);
+
     }
 
     public function getTeacherById($id)
